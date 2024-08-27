@@ -25,3 +25,4 @@ Thumbs.db
 
 # Environmental variables (if any)
 .env
+out/
