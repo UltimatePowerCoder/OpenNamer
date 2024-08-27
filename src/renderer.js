@@ -59,6 +59,26 @@ document.getElementById('addTextBtn').addEventListener('click', () => {
     }
 });
 
+document.getElementById('browseBtn4').addEventListener('click', async () => {
+    const folderPath = await ipcRenderer.invoke('dialog:openFile');
+    if (folderPath && folderPath.length > 0) {
+        document.getElementById('folderPath4').value = folderPath[0];
+    }
+});
+
+document.getElementById('renameWithNumbersBtn').addEventListener('click', () => {
+    const directory = document.getElementById('folderPath4').value;
+    const baseText = document.getElementById('baseTextInput').value;
+    const renameFolders = document.getElementById('renameFoldersCheckbox').checked;
+    const recursive = document.getElementById('recursiveRenameCheckbox').checked;
+
+    if (directory && baseText) {
+        renameFilesWithNumbers(directory, baseText, renameFolders, recursive);
+    } else {
+        alert('Please select a folder and enter the base text.');
+    }
+});
+
 function renameFilesInFolder(folder, patternToRemove) {
     fs.readdir(folder, (err, files) => {
         if (err) {
@@ -184,3 +204,37 @@ function addTextToFiles(directory, text, addToStart, addToEnd) {
         });
     });
 }
+
+function renameFilesWithNumbers(directory, baseText, renameFolders, recursive, counter = { value: 1 }) {
+    const items = fs.readdirSync(directory);
+
+    // Сначала обрабатываем все файлы
+    items.forEach((item) => {
+        const oldPath = path.join(directory, item);
+        const stats = fs.statSync(oldPath);
+
+        if (stats.isDirectory()) {
+            if (recursive) {
+                // Рекурсивно заходим в папку
+                renameFilesWithNumbers(oldPath, baseText, renameFolders, recursive, counter);
+            }
+
+            // Переименовываем вложенные папки только если чекбокс включен
+            if (renameFolders) {
+                const newFolderName = `${baseText}${counter.value}`;
+                const newFolderPath = path.join(directory, newFolderName);
+                fs.renameSync(oldPath, newFolderPath);
+                document.getElementById('output4').textContent += `Renamed folder: ${oldPath} -> ${newFolderPath}\n`;
+                counter.value++;
+            }
+        } else if (stats.isFile()) {
+            const ext = path.extname(item);
+            const newFileName = `${baseText}${counter.value}${ext}`;
+            const newFilePath = path.join(directory, newFileName);
+            fs.renameSync(oldPath, newFilePath);
+            document.getElementById('output4').textContent += `Renamed file: ${oldPath} -> ${newFilePath}\n`;
+            counter.value++;
+        }
+    });
+}
+

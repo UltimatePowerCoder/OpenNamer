@@ -50,6 +50,29 @@
         </div>
     </div>
 
+    <div>
+        <div>
+            <h2>Rename With Numbers</h2>
+            <label for="folderPath4">Folder Path:</label>
+            <input type="text" id="folderPath4" placeholder="Select the folder path" readonly>
+            <button id="browseBtn4">Browse...</button>
+            <br>
+            <label>
+                <input type="checkbox" id="renameFoldersCheckbox">
+                Rename folders in the selected directory
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" id="recursiveRenameCheckbox">
+                Rename files and folders recursively inside subdirectories
+            </label>
+            <br>
+            <input type="text" id="baseTextInput" placeholder="Base Text for Renaming">
+            <button id="renameWithNumbersBtn">Rename with Numbers</button>
+            <pre id="output4"></pre>
+        </div>
+    </div>
+
     <script src="renderer.js"></script>
 </body>
 
