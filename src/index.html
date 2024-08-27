@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Renamer</title>
 </head>
+
 <body>
     <h1>Batch File Renamer</h1>
-    <label for="folderPath">Folder Path:</label>
-    <input type="text" id="folderPath" placeholder="Select the folder path" readonly>
-    <button id="browseBtn">Browse...</button>
-    <br>
-    <label for="pattern">Pattern to Remove:</label>
-    <input type="text" id="pattern" placeholder="Enter the pattern">
-    <br>
-    <button id="renameBtn">Rename Files</button>
-    <pre id="output"></pre>
+
+    <div>
+        <h2>Find [text] and File Rename</h2>
+        <label for="folderPath">Folder Path:</label>
+        <input type="text" id="folderPath" placeholder="Select the folder path" readonly>
+        <button id="browseBtn">Browse...</button>
+        <br>
+        <label for="pattern">Pattern to Remove:</label>
+        <input type="text" id="pattern" placeholder="Enter the pattern">
+        <br>
+        <button id="renameBtn">Rename Files</button>
+        <pre id="output"></pre>
+    </div>
+
+    <div>
+        <h2>Find [text-one] and replace [text-two]</h2>
+        <label for="folderPath2">Folder Path:</label>
+        <input type="text" id="folderPath2" placeholder="Select the folder path" readonly>
+        <button id="browseBtn2">Browse...</button>
+        <br>
+        <input type="text" id="searchText" placeholder="Текст для поиска">
+        <input type="text" id="replaceText" placeholder="Текст для замены">
+        <button id="replaceBtn">Replace</button>
+        <pre id="output2"></pre>
+    </div>
 
     <script src="renderer.js"></script>
 </body>
+
 </html>
