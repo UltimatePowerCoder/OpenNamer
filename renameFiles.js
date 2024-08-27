@@ -1,13 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-// Укажите путь к вашей папке
-const folderPath = '/path/to/your/folder';
+const folderPath = process.argv[2];
+const patternToRemove = process.argv[3];
 
-// Укажите паттерн, который нужно удалить из имен файлов
-const patternToRemove = 'PATTERN';
-
-// Функция для переименования файлов
 function renameFilesInFolder(folder) {
     fs.readdir(folder, (err, files) => {
         if (err) {
@@ -25,7 +21,6 @@ function renameFilesInFolder(folder) {
                 }
 
                 if (stats.isDirectory()) {
-                    // Если это папка, рекурсивно обходим её содержимое
                     renameFilesInFolder(filePath);
                 } else if (stats.isFile()) {
                     if (file.includes(patternToRemove)) {
@@ -46,5 +41,8 @@ function renameFilesInFolder(folder) {
     });
 }
 
-// Запуск функции для переименования файлов в указанной папке
-renameFilesInFolder(folderPath);
+if (folderPath && patternToRemove) {
+    renameFilesInFolder(folderPath);
+} else {
+    console.error('Необходимо указать путь к папке и паттерн для удаления.');
+}
