@@ -6,20 +6,43 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "make": "electron-forge make"
+    "make": "electron-builder"
   },
   "devDependencies": {
-    "@electron-forge/cli": "^7.4.0",
-    "@electron-forge/maker-deb": "^7.4.0",
-    "@electron-forge/maker-rpm": "^7.4.0",
-    "@electron-forge/maker-squirrel": "^7.4.0",
-    "@electron-forge/maker-zip": "^7.4.0",
-    "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
-    "@electron-forge/plugin-fuses": "^7.4.0",
-    "@electron/fuses": "^1.8.0",
-    "electron": "^32.0.1"
+    "electron": "^32.0.1",
+    "electron-builder": "^24.13.3"
   },
-  "dependencies": {
-    "electron-squirrel-startup": "^1.0.1"
+  "build": {
+    "appId": "com.example.filerenamer",
+    "productName": "File Renamer",
+    "files": [
+      "**/*"
+    ],
+    "directories": {
+      "buildResources": "resources"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "resources/icons/installer.ico",
+      "uninstallerIcon": "resources/icons/uninstaller.ico",
+      "uninstallDisplayName": "File Renamer",
+      "license": "resources/license.txt"
+    },
+    "linux": {
+      "icon": "resources/icons/linux/icon.png",
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ]
+    },
+    "win": {
+      "icon": "resources/icons/windows/icon.ico",
+      "target": [
+        "nsis"
+      ]
+    }
   }
 }
