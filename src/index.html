@@ -1,78 +1,180 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Renamer</title>
+    <title>Open Namer</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <h1>Batch File Renamer</h1>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo"></div>
+            <nav class="menu">
+                <a href="#" class="menu-item active" data-section="main">Главная</a>
+                <a href="#" class="menu-item" data-section="delete">Удалить</a>
+                <a href="#" class="menu-item" data-section="replace">Заменить</a>
+                <a href="#" class="menu-item" data-section="add">Добавить</a>
+                <a href="#" class="menu-item" data-section="rename">Переименовать</a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="menu-item" data-section="help">Справка</a>
+                <a href="#" class="menu-item" data-section="support">Поддержка</a>
+            </div>
+        </aside>
 
-    <div>
-        <h2>Find [text] and File Rename</h2>
-        <label for="folderPath">Folder Path:</label>
-        <input type="text" id="folderPath" placeholder="Select the folder path" readonly>
-        <button id="browseBtn">Browse...</button>
-        <br>
-        <label for="pattern">Pattern to Remove:</label>
-        <input type="text" id="pattern" placeholder="Enter the pattern">
-        <br>
-        <button id="renameBtn">Rename Files</button>
-        <pre id="output"></pre>
+        <main class="content">
+            <header class="header">
+                <h1>Open Namer</h1>
+                <span class="version">v1.2.0</span>
+            </header>
+
+            <!-- Основной раздел действий -->
+            <div id="main-section" class="content__section content__section--active">
+                <!-- Главный раздел с действиями -->
+                <div class="action">
+                    <div class="action-number">1</div>
+                    <div class="action-details">
+                        <h2>Удалить из имени</h2>
+                        <p>Выбрать папку с нужными файлами<br>Вписать повторяющийся "паттерн" или другой символ который
+                            хотим удалить</p>
+                    </div>
+                    <button class="start-button" id="start-delete">Начать</button>
+                </div>
+
+                <div class="action">
+                    <div class="action-number">2</div>
+                    <div class="action-details">
+                        <h2>Заменить в имени</h2>
+                        <p>Выбрать папку с нужными файлами<br>Вписать новый "паттерн" для замены или другой символ
+                            который хотим заменить</p>
+                    </div>
+                    <button class="start-button" id="start-replace">Начать</button>
+                </div>
+
+                <div class="action">
+                    <div class="action-number">3</div>
+                    <div class="action-details">
+                        <h2>Добавить к имени</h2>
+                        <p>Выбрать папку с нужными файлами<br>Вписать "паттерн" для добавления. Можно добавить к началу
+                            имени или к концу</p>
+                    </div>
+                    <button class="start-button" id="start-add">Начать</button>
+                </div>
+
+                <div class="action">
+                    <div class="action-number">4</div>
+                    <div class="action-details">
+                        <h2>Переименовать</h2>
+                        <p>Выбрать папку с нужными файлами<br>Вписать новое имя для всех файлов. После запуска все файлы
+                            переименуются</p>
+                    </div>
+                    <button class="start-button" id="start-rename">Начать</button>
+                </div>
+            </div>
+
+
+            <div class="content__section" id="delete-section">
+                <h2 class="section__title">Удаление из имени</h2>
+                <div class="section__field">
+                    <label for="folderPath" class="section__label">Путь к папке:</label>
+                    <div class="section__input-group">
+                        <input type="text" id="folderPath" class="section__input" placeholder="Выберите путь к папке"
+                            readonly>
+                        <button id="browseBtn" class="section__button">Открыть...</button>
+                    </div>
+                </div>
+                <div class="section__field">
+                    <label for="pattern" class="section__label">Текст для удаления:</label>
+                    <input type="text" id="pattern" class="section__input" placeholder="Введите текст">
+                </div>
+                <button id="renameBtn" class="section__button section__button--primary">Начать</button>
+                <pre id="output" class="section__output"></pre>
+            </div>
+
+            <div class="content__section" id="replace-section">
+                <h2 class="section__title">Замена в именах файлов</h2>
+                <div class="section__field">
+                    <label for="folderPath2" class="section__label">Путь к папке:</label>
+                    <div class="section__input-group">
+                        <input type="text" id="folderPath2" class="section__input" placeholder="Выберите путь к папке"
+                            readonly>
+                        <button id="browseBtn2" class="section__button">Открыть...</button>
+                    </div>
+                </div>
+                <div class="section__field">
+                    <input type="text" id="searchText" class="section__input" placeholder="Текст для поиска">
+                </div>
+                <div class="section__field">
+                    <input type="text" id="replaceText" class="section__input" placeholder="Текст для замены">
+                </div>
+                <button id="replaceBtn" class="section__button section__button--primary">Начать</button>
+                <pre id="output2" class="section__output"></pre>
+            </div>
+
+            <div class="content__section" id="add-section">
+                <h2 class="section__title">Добавление к имени файлов</h2>
+                <div class="section__field">
+                    <label for="folderPath3" class="section__label">Путь к папке:</label>
+                    <div class="section__input-group">
+                        <input type="text" id="folderPath3" class="section__input" placeholder="Выберите путь к папке"
+                            readonly>
+                        <button id="browseBtn3" class="section__button">Открыть...</button>
+                    </div>
+                </div>
+                <div class="section__field">
+                    <input type="text" id="addTextInput" class="section__input" placeholder="Введите текст">
+                </div>
+                <div class="section__field section__field--checkbox">
+                    <label class="section__checkbox-label">
+                        <input type="checkbox" id="addToStartCheckbox" class="section__checkbox">
+                        Добавить в начало
+                    </label>
+                </div>
+                <div class="section__field section__field--checkbox">
+                    <label class="section__checkbox-label">
+                        <input type="checkbox" id="addToEndCheckbox" class="section__checkbox">
+                        Добавить в конец
+                    </label>
+                </div>
+                <button id="addTextBtn" class="section__button section__button--primary">Начать</button>
+                <pre id="output3" class="section__output"></pre>
+            </div>
+
+            <div class="content__section" id="rename-section">
+                <h2 class="section__title">Переименовать все файлы</h2>
+                <div class="section__field">
+                    <label for="folderPath4" class="section__label">Путь к папке:</label>
+                    <div class="section__input-group">
+                        <input type="text" id="folderPath4" class="section__input" placeholder="Выберите путь к папке"
+                            readonly>
+                        <button id="browseBtn4" class="section__button">Открыть...</button>
+                    </div>
+                </div>
+                <div class="section__field">
+                    <input type="text" id="baseTextInput" class="section__input" placeholder="Новое имя">
+                    <button id="renameWithNumbersBtn" class="section__button section__button--primary">Начать</button>
+                </div>
+                <div class="section__field section__field--checkbox">
+                    <label class="section__checkbox-label">
+                        <input type="checkbox" id="renameFoldersCheckbox" class="section__checkbox">
+                        Переименовывать папки
+                    </label>
+                </div>
+                <div class="section__field section__field--checkbox">
+                    <label class="section__checkbox-label">
+                        <input type="checkbox" id="recursiveRenameCheckbox" class="section__checkbox">
+                        Переименовывать файлы внутри папок
+                    </label>
+                </div>
+                <pre id="output4" class="section__output"></pre>
+            </div>
+
+        </main>
     </div>
-
-    <div>
-        <h2>Find [text-one] and replace [text-two]</h2>
-        <label for="folderPath2">Folder Path:</label>
-        <input type="text" id="folderPath2" placeholder="Select the folder path" readonly>
-        <button id="browseBtn2">Browse...</button>
-        <br>
-        <input type="text" id="searchText" placeholder="Текст для поиска">
-        <input type="text" id="replaceText" placeholder="Текст для замены">
-        <button id="replaceBtn">Replace</button>
-        <pre id="output2"></pre>
-    </div>
-
-    <div>
-        <div>
-            <h2>Add text to start or end</h2>
-            <label for="folderPath3">Folder Path:</label>
-            <input type="text" id="folderPath3" placeholder="Select the folder path" readonly>
-            <button id="browseBtn3">Browse...</button>
-            <br>
-            <input type="text" id="addTextInput" placeholder="Введите текст">
-            <input type="checkbox" id="addToStartCheckbox"> Добавить в начало
-            <input type="checkbox" id="addToEndCheckbox"> Добавить в конец
-            <button id="addTextBtn">Применить</button>
-            <pre id="output3"></pre>
-        </div>
-    </div>
-
-    <div>
-        <div>
-            <h2>Rename With Numbers</h2>
-            <label for="folderPath4">Folder Path:</label>
-            <input type="text" id="folderPath4" placeholder="Select the folder path" readonly>
-            <button id="browseBtn4">Browse...</button>
-            <br>
-            <label>
-                <input type="checkbox" id="renameFoldersCheckbox">
-                Rename folders in the selected directory
-            </label>
-            <br>
-            <label>
-                <input type="checkbox" id="recursiveRenameCheckbox">
-                Rename files and folders recursively inside subdirectories
-            </label>
-            <br>
-            <input type="text" id="baseTextInput" placeholder="Base Text for Renaming">
-            <button id="renameWithNumbersBtn">Rename with Numbers</button>
-            <pre id="output4"></pre>
-        </div>
-    </div>
-
+    <script src="script.js"></script>
     <script src="renderer.js"></script>
 </body>
 
