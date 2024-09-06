@@ -29,6 +29,11 @@
             <header class="header">
                 <h1>Open Namer</h1>
                 <span class="version">v1.2.0</span>
+                <div class="language-switcher">
+                    <button onclick="updateLanguage('ru')">RU</button>
+                    <button onclick="updateLanguage('en')">EN</button>
+                </div>
+
             </header>
 
             <!-- Основной раздел действий -->
@@ -128,16 +133,12 @@
                     <input type="text" id="addTextInput" class="section__input" placeholder="Введите текст">
                 </div>
                 <div class="section__field section__field--checkbox">
-                    <label class="section__checkbox-label">
-                        <input type="checkbox" id="addToStartCheckbox" class="section__checkbox">
-                        Добавить в начало
-                    </label>
+                    <input type="checkbox" id="addToStartCheckbox" class="section__checkbox">
+                    <label for="addToStartCheckbox" class="section__checkbox-label">Добавить в начало</label>
                 </div>
                 <div class="section__field section__field--checkbox">
-                    <label class="section__checkbox-label">
-                        <input type="checkbox" id="addToEndCheckbox" class="section__checkbox">
-                        Добавить в конец
-                    </label>
+                    <input type="checkbox" id="addToEndCheckbox" class="section__checkbox">
+                    <label for="addToEndCheckbox" class="section__checkbox-label">Добавить в конец</label>
                 </div>
                 <button id="addTextBtn" class="section__button section__button--primary">Начать</button>
                 <pre id="output3" class="section__output"></pre>
@@ -158,16 +159,13 @@
                     <button id="renameWithNumbersBtn" class="section__button section__button--primary">Начать</button>
                 </div>
                 <div class="section__field section__field--checkbox">
-                    <label class="section__checkbox-label">
-                        <input type="checkbox" id="renameFoldersCheckbox" class="section__checkbox">
-                        Переименовывать папки
-                    </label>
+                    <input type="checkbox" id="renameFoldersCheckbox" class="section__checkbox">
+                    <label for="renameFoldersCheckbox" class="section__checkbox-label">Переименовывать папки</label>
                 </div>
                 <div class="section__field section__field--checkbox">
-                    <label class="section__checkbox-label">
-                        <input type="checkbox" id="recursiveRenameCheckbox" class="section__checkbox">
-                        Переименовывать файлы внутри папок
-                    </label>
+                    <input type="checkbox" id="recursiveRenameCheckbox" class="section__checkbox">
+                    <label for="recursiveRenameCheckbox" class="section__checkbox-label">Переименовывать файлы внутри
+                        папок</label>
                 </div>
                 <pre id="output4" class="section__output"></pre>
             </div>
@@ -175,6 +173,7 @@
         </main>
     </div>
     <script src="script.js"></script>
+    <script src="translations.js"></script>
     <script src="renderer.js"></script>
 </body>
 

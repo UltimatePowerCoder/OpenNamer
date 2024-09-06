@@ -1,3 +1,8 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLanguage = localStorage.getItem('selectedLanguage') || 'ru'; // Получаем сохраненный язык или ставим русский
+    updateLanguage(savedLanguage); // Обновляем интерфейс на выбранный язык
+});
+
 document.getElementById('start-delete').addEventListener('click', function() {
     document.querySelector('.menu-item[data-section="delete"]').click();
 });

@@ -228,3 +228,20 @@ body {
 .sidebar-footer{
     display: none;
 }
+
+.language-switcher {
+    display: flex;
+    gap: 10px;
+    margin: 10px;
+}
+
+.language-switcher button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.language-switcher button:hover {
+    background-color: #aaa;
+}

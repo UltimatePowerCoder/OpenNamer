@@ -1,6 +1,6 @@
 {
   "name": "Open Namer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Open Namer is a powerful file renaming tool that provides advanced features for managing file names. It allows recursive renaming, pattern removal, text replacement, and appending or prepending text to file names across directories.",
   "author": "Leonid Korshunov",
   "main": "main.js",
