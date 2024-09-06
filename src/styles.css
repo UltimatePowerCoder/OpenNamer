@@ -131,6 +131,7 @@ body {
 .action-details p {
     font-size: 1.6rem;
     color: #777;
+    padding-right: 1rem;
 }
 
 .start-button {
